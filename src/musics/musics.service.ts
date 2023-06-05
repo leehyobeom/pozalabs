@@ -1,10 +1,11 @@
 import { Injectable } from "@nestjs/common";
-// import { Controller, Get, Res, Req, Param, UseGuards } from "@nestjs/common";
-// import * as dayjs from 'dayjs'
-
 import { ConfigService } from "@nestjs/config";
+import { HttpService } from "@nestjs/axios";
 
 @Injectable()
 export class MusicsService {
-  constructor(private readonly config: ConfigService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly configService: ConfigService
+  ) {}
 }
