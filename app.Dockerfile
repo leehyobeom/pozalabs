@@ -16,6 +16,6 @@ WORKDIR /app
 
 COPY --from=builder /app ./
 
-EXPOSE 3000
+EXPOSE 8000
 ENV APP=${TARGET_ENV}
 CMD npm run ${APP}

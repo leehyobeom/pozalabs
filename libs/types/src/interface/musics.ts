@@ -26,3 +26,10 @@ export interface Response {
   total: number;
   items: Sample[];
 }
+
+export interface SampleList {
+  total: number;
+  items: Sample[];
+  has_prev: boolean;
+  has_next: boolean;
+}

@@ -2,11 +2,17 @@ version: "3"
 
 # 주석을 해제하고 파일을 완성해주세요.
 services:
-#  app:
-#    container_name: pozalabs_backend_assignment_app
-#    depends_on:
-#      - mock
-
+  app:
+    container_name: pozalabs_backend_assignment_app
+    depends_on:
+      - mock
+    build:
+          context: .
+          dockerfile: app.Dockerfile
+          args:
+            TARGET_ENV: dev
+    ports:
+      - "8000:8000"
   mock:
     container_name: pozalabs_backend_assignment_mock
     build:

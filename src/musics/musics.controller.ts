@@ -14,7 +14,7 @@ export class MusicsController {
   @Post("v1/musics")
   async getMusics(@Body() musicsDto: MusicsDto, @Res() res, @Req() Req) {
     const result: CategoryList = await this.categoryService.getCategory();
-    await this.categoryService.checkFieldCategory(musicsDto, result);
-    res.send(result);
+    await this.categoryService.checkCategory(musicsDto, result);
+    res.send(await this.musicsService.getSamples(musicsDto));
   }
 }

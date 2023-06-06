@@ -10,7 +10,6 @@ import {
 import { ConfigService } from "@nestjs/config";
 import { HttpService } from "@nestjs/axios";
 import { Hateoas } from "@libs/types/interface/error";
-import { Track } from "@libs/types/interface/musics";
 
 @Injectable()
 export class CategoryService {
@@ -40,10 +39,7 @@ export class CategoryService {
     }
   }
 
-  async checkFieldCategory(
-    target: Record<string, any>,
-    categoryList: CategoryList
-  ) {
+  async checkCategory(target: Record<string, any>, categoryList: CategoryList) {
     const errorMessages: string[] = [];
     for (const [key, value] of Object.entries(target)) {
       const category_param: CategoryParam = {
@@ -52,7 +48,7 @@ export class CategoryService {
         categoryList,
         errorMessages,
       };
-      this.check_category(category_param);
+      this.select_field_checker(category_param);
     }
 
     if (errorMessages.length) {
@@ -73,28 +69,28 @@ export class CategoryService {
     return;
   }
 
-  check_category(categoryParam: CategoryParam) {
+  select_field_checker(categoryParam: CategoryParam) {
     const array_type = array_fields[categoryParam.category_type];
     if (array_type) {
       categoryParam.category_type = array_type;
-      this.check_array_fields(categoryParam);
+      this.check_array_field(categoryParam);
       return;
     }
     if (categoryParam.category_type === "tracks") {
-      this.check_track(categoryParam);
+      this.check_track_field(categoryParam);
       return;
     }
     this.check_field(categoryParam);
   }
 
-  check_array_fields(categoryParam: CategoryParam) {
+  check_array_field(categoryParam: CategoryParam) {
     for (const value of categoryParam.value) {
       categoryParam.value = value;
       this.check_field(categoryParam);
     }
   }
 
-  check_track(categoryParam: CategoryParam) {
+  check_track_field(categoryParam: CategoryParam) {
     for (const value of categoryParam.value) {
       categoryParam.category_type = "role";
       categoryParam.value = value.role;
@@ -102,7 +98,7 @@ export class CategoryService {
 
       categoryParam.category_type = "instrument";
       categoryParam.value = value.instruments;
-      this.check_array_fields(categoryParam);
+      this.check_array_field(categoryParam);
     }
   }
 

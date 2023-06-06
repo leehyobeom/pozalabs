@@ -16,6 +16,8 @@ import {
   IsNotDrumRolePrimary,
 } from "@libs/types/validate/validate.tracks";
 
+import { IsNumberArrayASC } from "@libs/types/validate/validate.common";
+
 export class RequestDto {
   @IsNotEmpty()
   @IsString()
@@ -28,6 +30,7 @@ export class RequestDto {
   @ArrayMaxSize(2)
   @Max(200, { each: true })
   @Min(30, { each: true })
+  @IsNumberArrayASC()
   bpm: number[];
 
   @IsNotEmpty()
