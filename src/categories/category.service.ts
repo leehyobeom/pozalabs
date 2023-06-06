@@ -1,6 +1,4 @@
 import { Injectable, HttpException } from "@nestjs/common";
-// import { Controller, Get, Res, Req, Param, UseGuards } from "@nestjs/common";
-// import * as dayjs from 'dayjs'
 import {
   Category,
   CategoryList,
@@ -39,7 +37,10 @@ export class CategoryService {
     }
   }
 
-  async checkCategory(target: Record<string, any>, categoryList: CategoryList) {
+  async checkCategory(
+    target: Record<string, any>,
+    categoryList: CategoryList
+  ): Promise<void> {
     const errorMessages: string[] = [];
     for (const [key, value] of Object.entries(target)) {
       const category_param: CategoryParam = {
@@ -69,7 +70,7 @@ export class CategoryService {
     return;
   }
 
-  select_field_checker(categoryParam: CategoryParam) {
+  select_field_checker(categoryParam: CategoryParam): void {
     const array_type = array_fields[categoryParam.category_type];
     if (array_type) {
       categoryParam.category_type = array_type;
@@ -83,14 +84,14 @@ export class CategoryService {
     this.check_field(categoryParam);
   }
 
-  check_array_field(categoryParam: CategoryParam) {
+  check_array_field(categoryParam: CategoryParam): void {
     for (const value of categoryParam.value) {
       categoryParam.value = value;
       this.check_field(categoryParam);
     }
   }
 
-  check_track_field(categoryParam: CategoryParam) {
+  check_track_field(categoryParam: CategoryParam): void {
     for (const value of categoryParam.value) {
       categoryParam.category_type = "role";
       categoryParam.value = value.role;
@@ -102,7 +103,7 @@ export class CategoryService {
     }
   }
 
-  check_field(categoryParam: CategoryParam) {
+  check_field(categoryParam: CategoryParam): void {
     const category: Category[] = categoryParam.categoryList.items.filter(
       (item) => item.type === categoryParam.category_type
     );

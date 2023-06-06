@@ -12,6 +12,9 @@ export function IsUniquePrimary() {
       },
       validator: {
         validate(tracks: Track[]) {
+          if (!Array.isArray(tracks)) {
+            return true;
+          }
           return tracks.filter((track) => track.is_primary).length < 2;
         },
       },
@@ -30,6 +33,9 @@ export function IsNotDrumRolePrimary() {
       },
       validator: {
         validate(tracks: Track[]) {
+          if (!Array.isArray(tracks)) {
+            return true;
+          }
           return (
             tracks.filter((track) => track.is_primary && track.role === "drums")
               .length === 0

@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
+import { ConfigModule } from "@nestjs/config";
 import { MusicsModule } from "./musics/musics.module";
 import { APP_INTERCEPTOR, APP_PIPE } from "@nestjs/core";
 import * as errorsInterceptor from "./common/errors.interceptor";

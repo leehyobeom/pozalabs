@@ -11,6 +11,9 @@ export function IsNumberArrayASC() {
       },
       validator: {
         validate(array: number[]) {
+          if (!Array.isArray(array)) {
+            return true;
+          }
           const elements = array.entries();
           for (const [index] of elements) {
             if (!index) continue;

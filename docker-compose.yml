@@ -10,7 +10,7 @@ services:
           context: .
           dockerfile: app.Dockerfile
           args:
-            TARGET_ENV: dev
+            TARGET_ENV: prod
     ports:
       - "8000:8000"
   mock:

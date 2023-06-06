@@ -2,7 +2,7 @@ import { Controller, Res, Req, Post, Body } from "@nestjs/common";
 import { MusicsService } from "./musics.service";
 import { CategoryService } from "../categories/category.service";
 import { MusicsDto } from "../../libs/types/src/dtos/musics.dto";
-import { Category, CategoryList } from "@libs/types/interface/category";
+import { CategoryList } from "@libs/types/interface/category";
 
 @Controller()
 export class MusicsController {

@@ -2,12 +2,7 @@ import { Injectable, HttpException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { HttpService } from "@nestjs/axios";
 import { Hateoas } from "@libs/types/interface/error";
-import {
-  Sample,
-  SampleList,
-  Response,
-  Track,
-} from "@libs/types/interface/musics";
+import { SampleList, Response, Track } from "@libs/types/interface/musics";
 import { MusicsDto } from "../../libs/types/src/dtos/musics.dto";
 @Injectable()
 export class MusicsService {
