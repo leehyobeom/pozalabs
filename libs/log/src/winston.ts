@@ -1,8 +1,8 @@
-import * as winston from 'winston';
-import * as winstonDaily from 'winston-daily-rotate-file';
-import { join } from 'path';
+import * as winston from "winston";
+import * as winstonDaily from "winston-daily-rotate-file";
+import { join } from "path";
 
-const logDir = join(__dirname, '../../../logs');
+const logDir = join(__dirname, "../../../logs");
 const { combine, timestamp, printf } = winston.format;
 
 // Define log format
@@ -17,15 +17,14 @@ const logFormat = printf((info) => {
 export const logger = winston.createLogger({
   format: combine(
     timestamp({
-      format: 'YYYY-MM-DD HH:mm:ss',
+      format: "YYYY-MM-DD HH:mm:ss",
     }),
-    logFormat,
+    logFormat
   ),
   transports: [
-
     new winstonDaily({
-      level: 'info',
-      datePattern: 'YYYY-MM-DD',
+      level: "info",
+      datePattern: "YYYY-MM-DD",
       dirname: logDir,
       filename: `%DATE%.log`,
       maxFiles: 30,
@@ -33,9 +32,9 @@ export const logger = winston.createLogger({
     }),
 
     new winstonDaily({
-      level: 'error',
-      datePattern: 'YYYY-MM-DD',
-      dirname: logDir + '/error',
+      level: "error",
+      datePattern: "YYYY-MM-DD",
+      dirname: logDir + "/error",
       filename: `%DATE%.error.log`,
       maxFiles: 30,
       zippedArchive: true,
@@ -47,7 +46,7 @@ logger.add(
   new winston.transports.Console({
     format: winston.format.combine(
       winston.format.colorize(),
-      winston.format.simple(), 
+      winston.format.simple()
     ),
-  }),
+  })
 );
