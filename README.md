@@ -1,15 +1,3 @@
-
-
-1. 파이썬 3.9 환경 구성 (pyenv, virtualenv, ...)
-2. poetry 설치 (`pip install poetry`)
-3. 패키지 설치 (`poetry install`)
-
-### 필요 패키지 설치 (파이썬 사용시)
-
-```shell
-$ poetry add "PACKAGE"
-``` 
-
 ### 데이터 및 API
 
 - mock API 실행을 위해 Docker를 먼저 설치해야 합니다.
@@ -34,14 +22,6 @@ $ poetry add "PACKAGE"
   - 키
   - 박자
   - BPM (음원의 빠르기)
-
-## 구현 
-
-- 샘플 필터링 로직 및 API 구현
-- 에러 처리
-- 타입 힌트 사용. 불가피한 경우를 제외하면 타입 힌트를 사용해야 합니다.
-- 확장성 높은 코드
-- 가독성 높은 코드
 
 ## API
 
